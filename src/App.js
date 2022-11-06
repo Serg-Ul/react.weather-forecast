@@ -1,6 +1,7 @@
 import './App.css';
 import React, {useState, useEffect} from "react";
 import Weather from "./components/weather";
+import {Dimmer, Loader} from "semantic-ui-react";
 
 export default function App() {
 
@@ -26,7 +27,15 @@ export default function App() {
 
     return (
         <div className="App">
-            { data.main !== undefined ? <Weather weatherData={data}/> : <div></div> }
+            {
+                data.main !== undefined
+                    ? <Weather weatherData={data}/>
+                    : <Dimmer>
+                        <Loader>
+                            Loading...
+                        </Loader>
+                      </Dimmer>
+            }
         </div>
     );
 }
